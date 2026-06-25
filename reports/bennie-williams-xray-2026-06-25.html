@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bennie Williams — Business X-Ray Report (June 2026)</title>
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #131825;
+    --border: #1f2937;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --blue: #58a6ff;
+    --purple: #bc8cff;
+    --yellow: #d29922;
+    --orange: #f0883e;
+    --red: #f85149;
+    --pink: #ff7b72;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 2rem;
+  }
+  .container { max-width: 1400px; margin: 0 auto; }
+  header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+  .subtitle { color: var(--muted); font-size: 1.1rem; }
+  h2 {
+    font-size: 1.75rem;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 { font-size: 1.25rem; margin: 1.5rem 0 0.75rem; color: var(--accent); }
+  .meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .meta-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+  }
+  .meta-label { color: var(--muted); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .meta-value { font-size: 1.5rem; font-weight: 600; margin-top: 0.25rem; }
+  .business-map {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .column {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    min-height: 200px;
+  }
+  .column-header {
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border);
+    text-align: center;
+  }
+  .col-traffic .column-header { border-color: var(--green); }
+  .col-converters .column-header { border-color: var(--text); }
+  .col-products .column-header { border-color: var(--blue); }
+  .col-funnels .column-header { border-color: var(--purple); }
+  .col-math .column-header { border-color: var(--yellow); }
+  .col-team .column-header { border-color: var(--pink); }
+  .col-goals .column-header { border-color: var(--orange); }
+  .item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+  }
+  .item.primary { border-left: 3px solid var(--green); }
+  .item.secondary { border-left: 3px solid var(--blue); }
+  .item.planned { border-style: dashed; opacity: 0.7; }
+  .item.paid { border-left: 3px solid var(--blue); }
+  .item.funnel { border-left: 3px solid var(--purple); }
+  .item.goal { border-left: 3px solid var(--orange); }
+  .bowtie {
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    gap: 1rem;
+    align-items: center;
+    margin: 1.5rem 0;
+  }
+  .bowtie-side {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+  }
+  .bowtie-side.acquisition { border-top: 3px solid var(--blue); }
+  .bowtie-side.delivery { border-top: 3px solid var(--green); }
+  .bowtie-knot {
+    text-align: center;
+    background: var(--surface);
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.75rem;
+    margin: 0 auto;
+  }
+  .bowtie-stage {
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.875rem;
+  }
+  .bowtie-stage:last-child { border-bottom: none; }
+  .bowtie-stage strong { color: var(--accent); display: block; margin-bottom: 0.25rem; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  th, td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  th { background: rgba(255,255,255,0.05); font-weight: 600; color: var(--accent); }
+  tr:last-child td { border-bottom: none; }
+  .badge {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .badge-red { background: rgba(248,81,73,0.2); color: var(--red); }
+  .badge-orange { background: rgba(240,136,62,0.2); color: var(--orange); }
+  .badge-green { background: rgba(63,185,80,0.2); color: var(--green); }
+  .badge-purple { background: rgba(188,140,255,0.2); color: var(--purple); }
+  .opportunity-list {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+  }
+  .opportunity-list li { margin-bottom: 0.5rem; }
+  .annotation {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.875rem;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>Bennie Williams — Business X-Ray</h1>
+  <p class="subtitle">AI Coaching & Web Development Service · Report generated June 25, 2026</p>
+</header>
+
+<section>
+  <h2>Executive Summary</h2>
+  <div class="meta">
+    <div class="meta-card">
+      <div class="meta-label">Archetype</div>
+      <div class="meta-value">Service / Coach</div>
+    </div>
+    <div class="meta-card">
+      <div class="meta-label">Revenue Model</div>
+      <div class="meta-value">One-time projects</div>
+    </div>
+    <div class="meta-card">
+      <div class="meta-label">Ceiling (est.)</div>
+      <div class="meta-value">$3–5k/mo</div>
+    </div>
+    <div class="meta-card">
+      <div class="meta-label">Bottlenecks</div>
+      <div class="meta-value">2 flagged</div>
+    </div>
+    <div class="meta-card">
+      <div class="meta-label">Automation Opps</div>
+      <div class="meta-value">3 flagged</div>
+    </div>
+    <div class="meta-card">
+      <div class="meta-label">24 Assets</div>
+      <div class="meta-value">Pending</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Business Map — 7 Columns</h2>
+
+  <div class="business-map">
+    <div class="column col-traffic">
+      <div class="column-header">Traffic</div>
+      <div class="item primary">Organic SEO — benniewilliams.com content</div>
+      <div class="item secondary">Direct / LinkedIn / referrals</div>
+      <div class="item planned">Planned: YouTube / content engine</div>
+    </div>
+    <div class="column col-converters">
+      <div class="column-header">Converters</div>
+      <div class="item">/services</div>
+      <div class="item">/contact (Calendly)</div>
+    </div>
+    <div class="column col-products">
+      <div class="column-header">Products</div>
+      <div class="item paid">AI Kickstart — $150 (60m)</div>
+      <div class="item paid">AI Deep Dive — $250 (90m)</div>
+      <div class="item paid">Single-Page Site — $300–500 (1wk)</div>
+      <div class="item paid">Portfolio Site — $1.5k–2.5k (2–3wk)</div>
+    </div>
+    <div class="column col-funnels">
+      <div class="column-header">Funnels</div>
+      <div class="item funnel">Free 15-min consult call (Calendly)</div>
+      <div class="item planned">Email nurture sequence (planned)</div>
+    </div>
+    <div class="column col-math">
+      <div class="column-header">Math</div>
+      <div class="item">Top: $300–2,500 per deal</div>
+      <div class="item">Expenses: ~$30/mo hosting + tools</div>
+      <div class="item">No recurring revenue yet</div>
+    </div>
+    <div class="column col-team">
+      <div class="column-header">Team</div>
+      <div class="item">Solo — Bennie Williams</div>
+      <div class="item">30+ yrs IT background</div>
+    </div>
+    <div class="column col-goals">
+      <div class="column-header">Performance Goals</div>
+      <div class="item goal">Book free calls</div>
+      <div class="item goal">Run discovery → close</div>
+      <div class="item goal">Deliver sites on time</div>
+      <div class="item goal">Deliver coaching sessions</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Bow-Tie Funnel — Customer Journey</h2>
+
+  <div class="bowtie">
+    <div class="bowtie-side acquisition">
+      <h3>ACQUISITION</h3>
+      <div class="bowtie-stage">
+        <strong>1. Awareness</strong>
+        SEO → benniewilliams.com
+      </div>
+      <div class="bowtie-stage">
+        <strong>2. Nurturing</strong>
+        Homepage content + services page
+      </div>
+      <div class="bowtie-stage">
+        <strong>3. Consideration</strong>
+        Click "Book a Free Call"
+      </div>
+    </div>
+    <div class="bowtie-knot">COMMIT</div>
+    <div class="bowtie-side delivery">
+      <h3>DELIVERY</h3>
+      <div class="bowtie-stage">
+        <strong>4. Onboarding</strong>
+        Book session / kickoff site project
+      </div>
+      <div class="bowtie-stage">
+        <strong>5. Launch</strong>
+        First session / first build milestone
+      </div>
+      <div class="bowtie-stage">
+        <strong>6. Results</strong>
+        Outcomes / live site + testimonial ask
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Opportunities Identified</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Opportunity</th>
+        <th>Type</th>
+        <th>Impact</th>
+        <th>Effort</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Add email nurture sequence after consult booking</td>
+        <td><span class="badge badge-orange">Automate</span></td>
+        <td>High — closes the gap between booking and call</td>
+        <td>Low — 3–5 emails</td>
+      </tr>
+      <tr>
+        <td>Build proposal template + post-call follow-up sequence</td>
+        <td><span class="badge badge-orange">Automate</span></td>
+        <td>High — recaptures undecided prospects</td>
+        <td>Medium — needs CRM</td>
+      </tr>
+      <tr>
+        <td>Create testimonial capture system post-delivery</td>
+        <td><span class="badge badge-purple">Digital Asset</span></td>
+        <td>High — fuels future lead gen</td>
+        <td>Low — simple form + email</td>
+      </tr>
+      <tr>
+        <td>SEO content engine — weekly posts targeting long-tail keywords</td>
+        <td><span class="badge badge-purple">Digital Asset</span></td>
+        <td>High — primary traffic driver</td>
+        <td>High — ongoing</td>
+      </tr>
+      <tr>
+        <td>Solo bottleneck: discovery call prep + delivery all manual</td>
+        <td><span class="badge badge-red">Bottleneck</span></td>
+        <td>Limits throughput to ~3–5 calls/week</td>
+        <td>Medium — needs system</td>
+      </tr>
+      <tr>
+        <td>No recurring revenue — every deal is one-time</td>
+        <td><span class="badge badge-red">Bottleneck</span></td>
+        <td>High — caps total revenue ceiling</td>
+        <td>High — needs new offer</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>90-Day Roadmap</h2>
+
+  <h3>DO FIRST (Weeks 1–4)</h3>
+  <ul class="opportunity-list">
+    <li><span class="annotation badge-orange">Automate</span> Build post-call email sequence (consult → proposal → follow-up)</li>
+    <li><span class="annotation badge-purple">Asset</span> Create a proposal template that converts consults into projects</li>
+    <li><span class="annotation badge-orange">Automate</span> Add testimonial capture form + auto-request email post-delivery</li>
+  </ul>
+
+  <h3>DO NEXT (Weeks 5–8)</h3>
+  <ul class="opportunity-list">
+    <li><span class="annotation badge-purple">Asset</span> Launch weekly SEO content — 2 posts/week targeting "AI coaching for [industry]" keywords</li>
+    <li><span class="annotation badge-orange">Automate</span> Discovery call prep template + AI-generated question set</li>
+  </ul>
+
+  <h3>DO LATER (Weeks 9–12)</h3>
+  <ul class="opportunity-list">
+    <li><span class="annotation badge-green">High Value</span> Design recurring offer (monthly AI retainer or group program)</li>
+    <li><span class="annotation badge-purple">Asset</span> Build a public portfolio showcase + case studies</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Tool Inventory</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tool</th>
+        <th>Process</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>benniewilliams.com</td>
+        <td>Traffic + Converters</td>
+        <td>SEO content, services page, contact form</td>
+      </tr>
+      <tr>
+        <td>Calendly</td>
+        <td>Funnel</td>
+        <td>Free 15-min call booking</td>
+      </tr>
+      <tr>
+        <td>LinkedIn</td>
+        <td>Traffic</td>
+        <td>Direct/referral source</td>
+      </tr>
+      <tr>
+        <td>(none)</td>
+        <td>Email nurture</td>
+        <td><em>Missing — gap</em></td>
+      </tr>
+      <tr>
+        <td>(none)</td>
+        <td>Proposal / quote</td>
+        <td><em>Missing — gap</em></td>
+      </tr>
+      <tr>
+        <td>(none)</td>
+        <td>Testimonial capture</td>
+        <td><em>Missing — gap</em></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="footer">
+  Generated by Hermes Forge · business-xray skill · <a href="https://xray.bawai.org" style="color: var(--accent);">xray.bawai.org</a>
+</div>
+
+</div>
+</body>
+</html>
